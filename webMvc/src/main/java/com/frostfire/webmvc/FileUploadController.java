@@ -37,9 +37,15 @@ public class FileUploadController {
                         .status(HttpStatus.BAD_REQUEST)
                         .body("File is too large. The size limit is 1 MB.");
             }
-            // Save the file to the server
-            file.transferTo(new java.io.File( path + file.getOriginalFilename()));
-            return ResponseEntity.ok("File uploaded successfully: " + file.getOriginalFilename());
+            java.io.File uploadedFile = new java.io.File(path + file.getOriginalFilename());
+            if(!uploadedFile.exists()) {
+                // Save the file to the server
+                file.transferTo(uploadedFile);
+                System.out.println("File Uplaoded");
+                return ResponseEntity.ok("File uploaded successfully: " + file.getOriginalFilename());
+            }
+            System.out.println("File Already Exists");
+            return ResponseEntity.ok("File Already Exists: " + file.getOriginalFilename());
         }
 
         catch (IOException e){
