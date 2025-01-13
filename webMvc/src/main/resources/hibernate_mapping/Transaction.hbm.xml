@@ -1,0 +1,16 @@
+<!DOCTYPE hibernate-mapping
+        PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.frostfire.webmvc.models">
+    <class name="Transaction" table="Transaction">
+        <id name="id" type="long" column="ID">
+            <generator class="identity"/>
+        </id>
+        <property name="date" type="java.time.LocalDate"/>
+        <property name="payee" type="java.lang.String" />
+        <property name="amount" type="java.lang.Double" />
+        <property name="checkNumber" type="java.lang.Integer" />
+        <property name="memo" type="java.lang.String"/>
+    </class>
+</hibernate-mapping>
